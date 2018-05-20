@@ -6,6 +6,7 @@
 package ua.khpi.pinecone;
 
 import org.apache.log4j.Logger;
+import ua.khpi.pinecone.polynomial.PolynomialEntity;
 import ua.khpi.pinecone.polynomial.PolynomialGenerator;
 
 import java.awt.event.ItemEvent;
@@ -49,7 +50,7 @@ public class Base extends javax.swing.JFrame {
 
         polynomialGenerator = new PolynomialGenerator();
 
-        Map<String, List<String>> polynomials = polynomialGenerator.getPolynomials();
+        Map<String, List<PolynomialEntity>> polynomials = polynomialGenerator.getPolynomials();
 
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -143,10 +144,15 @@ public class Base extends javax.swing.JFrame {
 
     private void degreePolynomialAItemStateChanged(ItemEvent evt) {
         LOG.info(evt.getItem());
-        Map<String, List<String>> polynomials = polynomialGenerator.getPolynomials();
-        List<String> list = polynomials.get(evt.getItem().toString());
-        choosePolynomialA.setModel(new javax.swing.DefaultComboBoxModel<>(list.toArray(new String[list.size()])));
-        choosePolynomialB.setModel(new javax.swing.DefaultComboBoxModel<>(list.toArray(new String[list.size()])));
+        Map<String, List<PolynomialEntity>> polynomials = polynomialGenerator.getPolynomials();
+        List<PolynomialEntity> list = polynomials.get(evt.getItem().toString());
+        String[] stringList = new String[list.size()];
+        int counter = 0;
+        for (PolynomialEntity polynomialEntity : list) {
+            stringList[counter++] = polynomialEntity.toString();
+        }
+        choosePolynomialA.setModel(new javax.swing.DefaultComboBoxModel<>(stringList));
+        choosePolynomialB.setModel(new javax.swing.DefaultComboBoxModel<>(stringList));
         outPolynomialA.setText("");
         outPolynomialB.setText("");
     }
@@ -166,7 +172,7 @@ public class Base extends javax.swing.JFrame {
 
     private void choosePolynomialBItemStateChanged(ItemEvent evt) {
         LOG.info("GET SELECTED ITEM = " + evt.getItem());
-        if (evt.getItem() != "") {
+        if (!evt.getItem().equals(" ")) {
             List<List<Integer>> polynomialB = polynomialGenerator.generatePolynomialB(degreePolynomialA.getSelectedItem().toString(), evt.getItem().toString());
             StringBuilder text = new StringBuilder();
             for (List<Integer> list : polynomialB) {

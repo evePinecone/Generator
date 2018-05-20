@@ -15,7 +15,7 @@ public class PolynomialGenerator {
 
     private static Logger LOG = Logger.getLogger(PolynomialGenerator.class);
 
-    private Map<String, List<String>> polynomials;
+    private Map<String, List<PolynomialEntity>> polynomials;
 
     public PolynomialGenerator() {
         polynomials = new HashMap<>();
@@ -31,12 +31,12 @@ public class PolynomialGenerator {
                 processFilesFromFolder(entry);
                 continue;
             }
-            List<String> listOfNames = new ArrayList<>();
-            listOfNames.add("");
+            List<PolynomialEntity> listOfNames = new ArrayList<>();
+            listOfNames.add(new PolynomialEntity("",""));
 
             try (Scanner scanner = new Scanner(entry)) {
                 while (scanner.hasNext()) {
-                    listOfNames.add(scanner.nextLine());
+                    listOfNames.add(new PolynomialEntity(scanner.next(), scanner.next()));
                 }
             } catch (FileNotFoundException e) {
                 LOG.error("Polynomial file not found", e);
@@ -107,7 +107,7 @@ public class PolynomialGenerator {
         }
     }
 
-    public Map<String, List<String>> getPolynomials() {
+    public Map<String, List<PolynomialEntity>> getPolynomials() {
         return polynomials;
     }
 }
