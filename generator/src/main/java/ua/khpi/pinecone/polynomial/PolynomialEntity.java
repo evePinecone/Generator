@@ -10,6 +10,11 @@ public class PolynomialEntity {
         this.j = j;
     }
 
+    public static PolynomialEntity parsePolynomialEntity(String input){
+        String[] spl = input.split(" ");
+        return new PolynomialEntity(spl[0], spl[1]);
+    }
+
     public String getName() {
         return name;
     }
@@ -22,5 +27,4 @@ public class PolynomialEntity {
     public String toString() {
         return j + " " + name;
     }
-
 }

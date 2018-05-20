@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import ua.khpi.pinecone.polynomial.PolynomialEntity;
 import ua.khpi.pinecone.polynomial.PolynomialGenerator;
 
+import javax.swing.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.List;
@@ -42,11 +43,13 @@ public class Base extends javax.swing.JFrame {
         polynomialALabel = new javax.swing.JLabel();
         polynomialAScroll = new javax.swing.JScrollPane();
         outPolynomialA = new javax.swing.JTextArea();
+        periodPolynomialALabel = new JLabel();
 
         choosePolynomialB = new javax.swing.JComboBox<>();
         polynomialBScroll = new javax.swing.JScrollPane();
         outPolynomialB = new javax.swing.JTextArea();
         polynomialBLabel = new javax.swing.JLabel();
+        periodPolynomialBLabel = new JLabel();
 
         polynomialGenerator = new PolynomialGenerator();
 
@@ -55,7 +58,8 @@ public class Base extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setMinimumSize(new java.awt.Dimension(1200, 400));
+        setMinimumSize(new java.awt.Dimension(800, 400));
+        setSize(800,400);
 
         degreePolynomialA.setModel(new javax.swing.DefaultComboBoxModel<>(polynomials.keySet().toArray(new String[polynomials.size()])));
 
@@ -73,6 +77,7 @@ public class Base extends javax.swing.JFrame {
         });
 
         polynomialALabel.setText("Polynomial A");
+        periodPolynomialALabel.setText("Ta = ");
 
         outPolynomialA.setColumns(20);
         outPolynomialA.setRows(5);
@@ -91,6 +96,7 @@ public class Base extends javax.swing.JFrame {
         });
 
         polynomialBLabel.setText("Polynomial B");
+        periodPolynomialBLabel.setText("Tb = ");
 
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -105,7 +111,7 @@ public class Base extends javax.swing.JFrame {
                                         .addComponent(choosePolynomialA, 0, 150, Short.MAX_VALUE)
                                         .addComponent(polynomialAScroll))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                         .addGroup(layout.createSequentialGroup()
@@ -232,6 +238,10 @@ public class Base extends javax.swing.JFrame {
     private javax.swing.JLabel polynomialALabel;
     private javax.swing.JLabel polynomialBLabel;
     private javax.swing.JScrollPane polynomialBScroll;
+
+
+    private javax.swing.JLabel periodPolynomialALabel;
+    private javax.swing.JLabel periodPolynomialBLabel;
     // End of variables declaration//GEN-END:variables
 
     private PolynomialGenerator polynomialGenerator;
