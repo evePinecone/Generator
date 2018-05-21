@@ -6,6 +6,7 @@
 package ua.khpi.pinecone.polynomial.form;
 
 import org.apache.log4j.Logger;
+import ua.khpi.pinecone.answer.ResultSSequenceForm;
 import ua.khpi.pinecone.polynomial.PolynomialEntity;
 import ua.khpi.pinecone.polynomial.PolynomialGenerator;
 import ua.khpi.pinecone.sequence.SequenceForm;
@@ -60,6 +61,7 @@ public class InitPanel extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        outPolynomialA.setEditable(false);
         outPolynomialA.setColumns(20);
         outPolynomialA.setRows(5);
         polynomialAScroll.setViewportView(outPolynomialA);
@@ -71,7 +73,7 @@ public class InitPanel extends javax.swing.JFrame {
 
         polynomialBLabel.setText("Polynomial B");
 
-
+        outPolynomialB.setEditable(false);
         outPolynomialB.setColumns(20);
         outPolynomialB.setRows(5);
         polynomialBScroll.setViewportView(outPolynomialB);
@@ -219,6 +221,8 @@ public class InitPanel extends javax.swing.JFrame {
             BigInteger firstArg = two.pow(Integer.parseInt(polynomialEntity.getJ())).subtract(BigInteger.ONE);
             Integer gcd = firstArg.divide(firstArg.gcd(BigInteger.valueOf(Long.parseLong(polynomialEntity.getJ())))).intValue();
             periodPolynomialA.setText(gcd.toString());
+//            reportEntity.setPeriodA(gcd);
+//            reportEntity.setA(polynomialA);
         }
     }
 
@@ -242,6 +246,8 @@ public class InitPanel extends javax.swing.JFrame {
             BigInteger firstArg = two.pow(Integer.parseInt(polynomialEntity.getJ())).subtract(BigInteger.ONE);
             Integer gcd = firstArg.divide(firstArg.gcd(BigInteger.valueOf(Long.parseLong(polynomialEntity.getJ())))).intValue();
             periodPolynomialB.setText(gcd.toString());
+//            reportEntity.setPeriodB(gcd);
+//            reportEntity.setA(polynomialB);
         }
     }
 
@@ -292,12 +298,19 @@ public class InitPanel extends javax.swing.JFrame {
                 sequenceForm.setVisible(false);
             }
         });
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                resultSSequenceForm = new ResultSSequenceForm();
+                resultSSequenceForm.setVisible(false);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> choosePolynomialA;
-    private javax.swing.JComboBox<String> choosePolynomialB;
-    private javax.swing.JComboBox<String> degreePolynomialA;
+    public javax.swing.JComboBox<String> choosePolynomialA;
+    public javax.swing.JComboBox<String> choosePolynomialB;
+    public javax.swing.JComboBox<String> degreePolynomialA;
     private javax.swing.JButton nextStep;
     private javax.swing.JTextArea outPolynomialA;
     private javax.swing.JTextArea outPolynomialB;
@@ -314,4 +327,5 @@ public class InitPanel extends javax.swing.JFrame {
     private PolynomialGenerator polynomialGenerator;
     public static SequenceForm sequenceForm;
     public static InitPanel initPanel;
+    public static ResultSSequenceForm resultSSequenceForm;
 }

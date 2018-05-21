@@ -6,10 +6,10 @@ import org.apache.log4j.Logger;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class PolynomialGenerator {
 
@@ -18,7 +18,7 @@ public class PolynomialGenerator {
     private Map<String, List<PolynomialEntity>> polynomials;
 
     public PolynomialGenerator() {
-        polynomials = new HashMap<>();
+        polynomials = new TreeMap<>();
         polynomials.put("", new ArrayList<>());
         processFilesFromFolder(new File("polynomials"));
         LOG.info("Available polynomials read from file");
