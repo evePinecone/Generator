@@ -8,6 +8,7 @@ package ua.khpi.pinecone.polynomial.form;
 import org.apache.log4j.Logger;
 import ua.khpi.pinecone.polynomial.PolynomialEntity;
 import ua.khpi.pinecone.polynomial.PolynomialGenerator;
+import ua.khpi.pinecone.sequence.SequenceForm;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -173,6 +174,13 @@ public class InitPanel extends javax.swing.JFrame {
             }
         });
 
+        nextStep.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sequenceNextMouseClicked(evt);
+            }
+        });
+
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -237,6 +245,11 @@ public class InitPanel extends javax.swing.JFrame {
         }
     }
 
+    private void sequenceNextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sequenceNextMouseClicked
+        sequenceForm.setVisible(true);
+        initPanel.setVisible(false);
+    }
+
 
     /**
      * @param args the command line arguments
@@ -268,7 +281,15 @@ public class InitPanel extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InitPanel().setVisible(true);
+                initPanel = new InitPanel();
+                initPanel.setVisible(true);
+            }
+        });
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                sequenceForm = new SequenceForm();
+                sequenceForm.setVisible(false);
             }
         });
     }
@@ -291,4 +312,6 @@ public class InitPanel extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private PolynomialGenerator polynomialGenerator;
+    public static SequenceForm sequenceForm;
+    public static InitPanel initPanel;
 }

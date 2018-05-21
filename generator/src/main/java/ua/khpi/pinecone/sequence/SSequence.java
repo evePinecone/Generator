@@ -14,18 +14,18 @@ public class SSequence {
     private List<List<Integer>> sequence = new ArrayList<>();
 
     public SSequence() {
-        processFileFromFolder(new File("S/S"));
+        processFileFromFolder(new File("S\\S.txt"));
         LOG.info("Available sequence read from file");
     }
 
     private void processFileFromFolder(File filePath) {
         try (Scanner scanner = new Scanner(filePath)) {
-            List<Integer> list = new ArrayList<>();
             int size = scanner.nextInt();
 
-            while (scanner.hasNext()) {
-                for(int i = 0; i < size; i++) {
-                    list.add(Integer.parseInt(scanner.next()));
+            for (int j = 0; j < size; j++) {
+                List<Integer> list = new ArrayList<>();
+                for (int i = 0; i < size; i++) {
+                    list.add(scanner.nextInt());
                 }
                 sequence.add(list);
             }
