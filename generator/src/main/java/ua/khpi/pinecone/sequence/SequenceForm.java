@@ -5,10 +5,12 @@
  */
 package ua.khpi.pinecone.sequence;
 
+import ua.khpi.pinecone.answer.Report;
+
 import java.util.List;
 
 import static ua.khpi.pinecone.polynomial.form.InitPanel.initPanel;
-//import static ua.khpi.pinecone.polynomial.form.InitPanel.resultSSequenceForm;
+import static ua.khpi.pinecone.polynomial.form.InitPanel.resultSSequenceForm;
 import static ua.khpi.pinecone.polynomial.form.InitPanel.sequenceForm;
 
 /**
@@ -17,12 +19,13 @@ import static ua.khpi.pinecone.polynomial.form.InitPanel.sequenceForm;
  */
 public class SequenceForm extends javax.swing.JFrame {
 
-//    private ReportEntity reportEntity;
+    private Report report;
 
     /**
      * Creates new form SequenceForm
      */
-    public SequenceForm() {
+    public SequenceForm(Report report) {
+        this.report = report;
         initComponents();
     }
 
@@ -145,7 +148,8 @@ public class SequenceForm extends javax.swing.JFrame {
     }//GEN-LAST:event_sequencePrevMouseClicked
 
     private void sequenceNextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sequenceNextMouseClicked
-//        resultSSequenceForm.setVisible(true);
+        report.addSequence(sequence.getSequence());
+        resultSSequenceForm.setVisible(true);
         sequenceForm.setVisible(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_sequenceNextMouseClicked

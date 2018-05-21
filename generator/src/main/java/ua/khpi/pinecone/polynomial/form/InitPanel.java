@@ -7,6 +7,7 @@ package ua.khpi.pinecone.polynomial.form;
 
 import org.apache.log4j.Logger;
 import ua.khpi.pinecone.answer.ResultSSequenceForm;
+import ua.khpi.pinecone.answer.Report;
 import ua.khpi.pinecone.polynomial.PolynomialEntity;
 import ua.khpi.pinecone.polynomial.PolynomialGenerator;
 import ua.khpi.pinecone.sequence.SequenceForm;
@@ -23,11 +24,13 @@ import java.util.Map;
 public class InitPanel extends javax.swing.JFrame {
 
     private static final Logger LOG = Logger.getLogger(InitPanel.class);
+    private Report report;
 
     /**
      * Creates new form InitPanel
      */
-    public InitPanel() {
+    public InitPanel(Report report) {
+        this.report = report;
         initComponents();
     }
 
@@ -221,8 +224,8 @@ public class InitPanel extends javax.swing.JFrame {
             BigInteger firstArg = two.pow(Integer.parseInt(polynomialEntity.getJ())).subtract(BigInteger.ONE);
             Integer gcd = firstArg.divide(firstArg.gcd(BigInteger.valueOf(Long.parseLong(polynomialEntity.getJ())))).intValue();
             periodPolynomialA.setText(gcd.toString());
-//            reportEntity.setPeriodA(gcd);
-//            reportEntity.setA(polynomialA);
+            report.setPeriodA(gcd);
+            report.setA(polynomialA);
         }
     }
 
@@ -246,8 +249,8 @@ public class InitPanel extends javax.swing.JFrame {
             BigInteger firstArg = two.pow(Integer.parseInt(polynomialEntity.getJ())).subtract(BigInteger.ONE);
             Integer gcd = firstArg.divide(firstArg.gcd(BigInteger.valueOf(Long.parseLong(polynomialEntity.getJ())))).intValue();
             periodPolynomialB.setText(gcd.toString());
-//            reportEntity.setPeriodB(gcd);
-//            reportEntity.setA(polynomialB);
+            report.setPeriodB(gcd);
+            report.setB(polynomialB);
         }
     }
 
@@ -284,24 +287,26 @@ public class InitPanel extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+        Report report = new Report();
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                initPanel = new InitPanel();
+                initPanel = new InitPanel(report);
                 initPanel.setVisible(true);
             }
         });
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                sequenceForm = new SequenceForm();
+                sequenceForm = new SequenceForm(report);
                 sequenceForm.setVisible(false);
             }
         });
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                resultSSequenceForm = new ResultSSequenceForm();
+                resultSSequenceForm = new ResultSSequenceForm(report);
                 resultSSequenceForm.setVisible(false);
             }
         });

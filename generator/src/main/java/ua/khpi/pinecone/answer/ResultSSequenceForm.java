@@ -5,6 +5,7 @@
  */
 package ua.khpi.pinecone.answer;
 
+import static ua.khpi.pinecone.polynomial.form.InitPanel.resultSSequenceForm;
 import static ua.khpi.pinecone.polynomial.form.InitPanel.sequenceForm;
 
 /**
@@ -18,8 +19,8 @@ public class ResultSSequenceForm extends javax.swing.JFrame {
     /**
      * Creates new form ResultSSequence
      */
-    public ResultSSequenceForm() {
-//        this.reportEntity = reportEntity;
+    public ResultSSequenceForm(Report report) {
+        this.reportEntity = report;
         initComponents();
     }
 
@@ -202,7 +203,7 @@ public class ResultSSequenceForm extends javax.swing.JFrame {
 
     private void resultPrevMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resultPrevMouseClicked
         sequenceForm.setVisible(true);
-//        resultSSequenceForm.setVisible(false);
+        resultSSequenceForm.setVisible(false);
     }//GEN-LAST:event_resultPrevMouseClicked
 
     private void nextStepGenerationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextStepGenerationMouseClicked
@@ -239,4 +240,6 @@ public class ResultSSequenceForm extends javax.swing.JFrame {
     private javax.swing.JLabel theoreticalPeriod1;
     private javax.swing.JLabel weightHamming;
     // End of variables declaration//GEN-END:variables
+
+    private Report reportEntity;
 }
