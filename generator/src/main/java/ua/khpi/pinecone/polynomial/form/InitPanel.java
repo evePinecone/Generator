@@ -6,15 +6,15 @@
 package ua.khpi.pinecone.polynomial.form;
 
 import org.apache.log4j.Logger;
-import ua.khpi.pinecone.answer.ResultSSequenceForm;
 import ua.khpi.pinecone.answer.Report;
+import ua.khpi.pinecone.answer.ResultSSequenceForm;
 import ua.khpi.pinecone.polynomial.PolynomialEntity;
 import ua.khpi.pinecone.polynomial.PolynomialGenerator;
 import ua.khpi.pinecone.sequence.SequenceForm;
+import ua.khpi.pinecone.utils.ArithmeticsUtils;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 
@@ -218,13 +218,10 @@ public class InitPanel extends javax.swing.JFrame {
             outPolynomialA.setText(text.toString());
 
             PolynomialEntity polynomialEntity = PolynomialEntity.parsePolynomialEntity(evt.getItem().toString());
-
-            BigInteger two = BigInteger.valueOf(2);
-            BigInteger second = BigInteger.valueOf(Long.parseLong(polynomialEntity.getJ()));
-            BigInteger firstArg = two.pow(Integer.parseInt(polynomialEntity.getJ())).subtract(BigInteger.ONE);
-            Integer gcd = firstArg.divide(firstArg.gcd(BigInteger.valueOf(Long.parseLong(polynomialEntity.getJ())))).intValue();
-            periodPolynomialA.setText(gcd.toString());
-            report.setPeriodA(gcd);
+            System.out.println(polynomialEntity.getJ() + " pow = " + (ArithmeticsUtils.pow(2, Integer.parseInt(degreePolynomialA.getSelectedItem().toString()))-1));
+            Integer period = (ArithmeticsUtils.pow(2, Integer.parseInt(degreePolynomialA.getSelectedItem().toString()))-1) / ArithmeticsUtils.gcd(ArithmeticsUtils.pow(2, Integer.parseInt(degreePolynomialA.getSelectedItem().toString())-1), Integer.parseInt(polynomialEntity.getJ()));
+            periodPolynomialA.setText(period.toString());
+            report.setPeriodA(period);
             report.setA(polynomialA);
         }
     }
@@ -244,12 +241,9 @@ public class InitPanel extends javax.swing.JFrame {
             outPolynomialB.setText(text.toString());
             PolynomialEntity polynomialEntity = PolynomialEntity.parsePolynomialEntity(evt.getItem().toString());
 
-            BigInteger two = BigInteger.valueOf(2);
-            BigInteger second = BigInteger.valueOf(Long.parseLong(polynomialEntity.getJ()));
-            BigInteger firstArg = two.pow(Integer.parseInt(polynomialEntity.getJ())).subtract(BigInteger.ONE);
-            Integer gcd = firstArg.divide(firstArg.gcd(BigInteger.valueOf(Long.parseLong(polynomialEntity.getJ())))).intValue();
-            periodPolynomialB.setText(gcd.toString());
-            report.setPeriodB(gcd);
+            Integer period = (ArithmeticsUtils.pow(2, Integer.parseInt(degreePolynomialA.getSelectedItem().toString()))-1) / ArithmeticsUtils.gcd(ArithmeticsUtils.pow(2, Integer.parseInt(degreePolynomialA.getSelectedItem().toString())-1), Integer.parseInt(polynomialEntity.getJ()));
+            periodPolynomialB.setText(period.toString());
+            report.setPeriodB(period);
             report.setB(polynomialB);
         }
     }

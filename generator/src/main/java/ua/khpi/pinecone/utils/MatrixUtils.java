@@ -28,10 +28,19 @@ public class MatrixUtils {
 
         for (int i = 0; i < A.size(); i++) {
             for (int j = 0; j < B.size(); j++) {
+
+                kArr[i][j] = 0;
+            }
+        }
+
+        for (int i = 0; i < A.size(); i++) {
+            for (int j = 0; j < B.size(); j++) {
                 for (int k = 0; k < B.size(); k++) {
                     kArr[i][j] += aArr[i][k] * bArr[k][j];
                 }
+                kArr[i][j] %= 2;
             }
+
         }
 
         return arrMatrixToListMatrix(kArr);
@@ -50,7 +59,7 @@ public class MatrixUtils {
     private static List<List<Integer>> arrMatrixToListMatrix(Integer[][] arr) {
         List<List<Integer>> list = new ArrayList<>();
 
-        for (int i = 0; i < list.size(); i++) {
+        for (int i = 0; i < arr[0].length; i++) {
             list.add(Arrays.asList(arr[i]));
         }
 

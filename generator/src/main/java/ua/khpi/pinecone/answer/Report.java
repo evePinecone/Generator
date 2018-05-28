@@ -75,7 +75,7 @@ public class Report {
         return steps;
     }
 
-    public void setSequences(List<List<List<Integer>>> sequences) {
-        this.sequences = sequences;
+    public List<List<List<Integer>>> getSequences() {
+        return sequences;
     }
 }

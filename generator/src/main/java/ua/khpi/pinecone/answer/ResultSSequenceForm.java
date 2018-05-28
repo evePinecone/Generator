@@ -5,6 +5,11 @@
  */
 package ua.khpi.pinecone.answer;
 
+import ua.khpi.pinecone.utils.ArithmeticsUtils;
+import ua.khpi.pinecone.utils.MatrixUtils;
+
+import java.util.List;
+
 import static ua.khpi.pinecone.polynomial.form.InitPanel.resultSSequenceForm;
 import static ua.khpi.pinecone.polynomial.form.InitPanel.sequenceForm;
 
@@ -67,7 +72,7 @@ public class ResultSSequenceForm extends javax.swing.JFrame {
 
         estimatedPeriodLabel.setText("Step No");
 
-        stepCounter.setText("steps");
+        stepCounter.setText("0");
 
         nextStepGeneration.setText("Step");
         nextStepGeneration.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -204,13 +209,27 @@ public class ResultSSequenceForm extends javax.swing.JFrame {
     private void resultPrevMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resultPrevMouseClicked
         sequenceForm.setVisible(true);
         resultSSequenceForm.setVisible(false);
-    }//GEN-LAST:event_resultPrevMouseClicked
+    }//GEN-LAST:event_resultPrevMouseClickedevent_resultPrevMouseClicked
 
     private void nextStepGenerationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextStepGenerationMouseClicked
-//        theoreticalPeriod1.setText(reportEntity.getPeriodA().toString());
-//        Integer est = ArithmeticsUtils.lcm(reportEntity.getPeriodA(), reportEntity.getPeriodB());
-//        reportEntity.setEstimatedPeriod(est);
-//        theoreticalPeriod1.setText(est.toString());
+        Integer est = ArithmeticsUtils.lcm(reportEntity.getPeriodA(), reportEntity.getPeriodB());
+        reportEntity.setEstimatedPeriod(est);
+        theoreticalPeriod1.setText(est.toString());
+        StringBuilder text = new StringBuilder();
+        List<List<Integer>> polynomialA = MatrixUtils.multByModulo(reportEntity.getA(), reportEntity.getSequences().get(Integer.parseInt(stepCounter.getText())));
+        polynomialA = MatrixUtils.multByModulo(polynomialA, reportEntity.getB());
+        reportEntity.addSequence(polynomialA);
+        for (List<Integer> list : polynomialA) {
+            for (Integer integer : list) {
+                text.append(integer).append(" ");
+            }
+            text.append(System.lineSeparator());
+        }
+        if(polynomialA.get(0).get(0) == 1) {
+            weightHamming.setText(String.valueOf((Integer.parseInt(weightHamming.getText()) + 1)));
+        }
+        outResultSequence.setText(text.toString());
+        stepCounter.setText(String.valueOf((Integer.parseInt(stepCounter.getText()) + 1)));
     }//GEN-LAST:event_nextStepGenerationMouseClicked
 
     private void generateAllMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generateAllMouseClicked
