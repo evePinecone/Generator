@@ -8,6 +8,7 @@ package ua.khpi.pinecone.polynomial.form;
 import org.apache.log4j.Logger;
 import ua.khpi.pinecone.answer.Report;
 import ua.khpi.pinecone.answer.ResultSSequenceForm;
+import ua.khpi.pinecone.polynomial.GenerateInvertible;
 import ua.khpi.pinecone.polynomial.PolynomialEntity;
 import ua.khpi.pinecone.polynomial.PolynomialGenerator;
 import ua.khpi.pinecone.sequence.SequenceForm;
@@ -49,14 +50,14 @@ public class InitPanel extends javax.swing.JFrame {
         polynomialALabel = new javax.swing.JLabel();
         choosePolynomialA = new javax.swing.JComboBox<>();
         polynomialBLabel = new javax.swing.JLabel();
-        choosePolynomialB = new javax.swing.JComboBox<>();
+//        choosePolynomialB = new javax.swing.JComboBox<>();
         polynomialBScroll = new javax.swing.JScrollPane();
         outPolynomialB = new javax.swing.JTextArea();
         nextStep = new javax.swing.JButton();
         periodPolynomialA = new javax.swing.JLabel();
         periodPolynomialALabel = new javax.swing.JLabel();
         periodPolynomialB = new javax.swing.JLabel();
-        periodPolynomialBLabel = new javax.swing.JLabel();
+//        periodPolynomialBLabel = new javax.swing.JLabel();
 
         polynomialGenerator = new PolynomialGenerator();
 
@@ -74,7 +75,7 @@ public class InitPanel extends javax.swing.JFrame {
         polynomialALabel.setText("Polynomial A");
 
 
-        polynomialBLabel.setText("Polynomial B");
+        polynomialBLabel.setText("Invertible A");
 
         outPolynomialB.setEditable(false);
         outPolynomialB.setColumns(20);
@@ -89,7 +90,7 @@ public class InitPanel extends javax.swing.JFrame {
 
         periodPolynomialB.setText("");
 
-        periodPolynomialBLabel.setText("Tb =");
+//        periodPolynomialBLabel.setText("Tb =");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,10 +116,10 @@ public class InitPanel extends javax.swing.JFrame {
                                                                 .addGap(68, 68, 68)
                                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                         .addComponent(polynomialBScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addComponent(choosePolynomialB, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+//                                                                        .addComponent(choosePolynomialB, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                         .addGroup(layout.createSequentialGroup()
-                                                                                .addGap(10, 10, 10)
-                                                                                .addComponent(periodPolynomialBLabel)
+//                                                                                .addGap(10, 10, 10)
+//                                                                                .addComponent(periodPolynomialBLabel)
                                                                                 .addGap(30, 30, 30)
                                                                                 .addComponent(periodPolynomialB))))))
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -137,7 +138,7 @@ public class InitPanel extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                 .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(choosePolynomialB, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+//                                                        .addComponent(choosePolynomialB, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                         .addComponent(polynomialBScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGroup(layout.createSequentialGroup()
@@ -154,8 +155,8 @@ public class InitPanel extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(periodPolynomialA)
                                         .addComponent(periodPolynomialALabel)
-                                        .addComponent(periodPolynomialB)
-                                        .addComponent(periodPolynomialBLabel))
+                                        .addComponent(periodPolynomialB))
+//                                        .addComponent(periodPolynomialBLabel))
                                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -173,11 +174,11 @@ public class InitPanel extends javax.swing.JFrame {
             }
         });
 
-        choosePolynomialB.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent evt) {
-                choosePolynomialBItemStateChanged(evt);
-            }
-        });
+//        choosePolynomialB.addItemListener(new ItemListener() {
+//            public void itemStateChanged(ItemEvent evt) {
+//                choosePolynomialBItemStateChanged(evt);
+//            }
+//        });
 
         nextStep.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -200,7 +201,7 @@ public class InitPanel extends javax.swing.JFrame {
             stringList[counter++] = polynomialEntity.toString();
         }
         choosePolynomialA.setModel(new javax.swing.DefaultComboBoxModel<>(stringList));
-        choosePolynomialB.setModel(new javax.swing.DefaultComboBoxModel<>(stringList));
+//        choosePolynomialB.setModel(new javax.swing.DefaultComboBoxModel<>(stringList));
         outPolynomialA.setText("");
         outPolynomialB.setText("");
     }
@@ -209,44 +210,57 @@ public class InitPanel extends javax.swing.JFrame {
         List<List<Integer>> polynomialA = polynomialGenerator.generatePolynomialA(degreePolynomialA.getSelectedItem().toString(), evt.getItem().toString());
         StringBuilder text = new StringBuilder();
         if (!evt.getItem().equals(" ")) {
-            for (List<Integer> list : polynomialA) {
-                for (Integer integer : list) {
-                    text.append(integer).append(" ");
-                }
-                text.append(System.lineSeparator());
-            }
-            outPolynomialA.setText(text.toString());
+
+            outPolynomialA.setText(listPolynomialToString(polynomialA));
 
             PolynomialEntity polynomialEntity = PolynomialEntity.parsePolynomialEntity(evt.getItem().toString());
-            System.out.println(polynomialEntity.getJ() + " pow = " + (ArithmeticsUtils.pow(2, Integer.parseInt(degreePolynomialA.getSelectedItem().toString()))-1));
             Integer period = (ArithmeticsUtils.pow(2, Integer.parseInt(degreePolynomialA.getSelectedItem().toString()))-1) / ArithmeticsUtils.gcd(ArithmeticsUtils.pow(2, Integer.parseInt(degreePolynomialA.getSelectedItem().toString())-1), Integer.parseInt(polynomialEntity.getJ()));
             periodPolynomialA.setText(period.toString());
+
+
             report.setPeriodA(period);
-            report.setA(polynomialA);
-        }
-    }
-
-
-    private void choosePolynomialBItemStateChanged(ItemEvent evt) {
-        LOG.info("GET SELECTED ITEM = " + evt.getItem());
-        if (!evt.getItem().equals(" ")) {
-            List<List<Integer>> polynomialB = polynomialGenerator.generatePolynomialB(degreePolynomialA.getSelectedItem().toString(), evt.getItem().toString());
-            StringBuilder text = new StringBuilder();
-            for (List<Integer> list : polynomialB) {
-                for (Integer integer : list) {
-                    text.append(integer).append(" ");
-                }
-                text.append(System.lineSeparator());
-            }
-            outPolynomialB.setText(text.toString());
-            PolynomialEntity polynomialEntity = PolynomialEntity.parsePolynomialEntity(evt.getItem().toString());
-
-            Integer period = (ArithmeticsUtils.pow(2, Integer.parseInt(degreePolynomialA.getSelectedItem().toString()))-1) / ArithmeticsUtils.gcd(ArithmeticsUtils.pow(2, Integer.parseInt(degreePolynomialA.getSelectedItem().toString())-1), Integer.parseInt(polynomialEntity.getJ()));
-            periodPolynomialB.setText(period.toString());
             report.setPeriodB(period);
+
+            List<List<Integer>> polynomialB = new GenerateInvertible(report).generateInvertible(polynomialA);
+            outPolynomialB.setText(listPolynomialToString(polynomialB));
+
+            report.setA(polynomialA);
             report.setB(polynomialB);
         }
     }
+
+    private String listPolynomialToString(List<List<Integer>> polynomialA) {
+        StringBuilder text = new StringBuilder();
+        for (List<Integer> list : polynomialA) {
+            for (Integer integer : list) {
+                text.append(integer).append(" ");
+            }
+            text.append(System.lineSeparator());
+        }
+        return text.toString();
+    }
+
+
+//    private void choosePolynomialBItemStateChanged(ItemEvent evt) {
+//        LOG.info("GET SELECTED ITEM = " + evt.getItem());
+//        if (!evt.getItem().equals(" ")) {
+//            List<List<Integer>> polynomialB = polynomialGenerator.generatePolynomialB(degreePolynomialA.getSelectedItem().toString(), evt.getItem().toString());
+//            StringBuilder text = new StringBuilder();
+//            for (List<Integer> list : polynomialB) {
+//                for (Integer integer : list) {
+//                    text.append(integer).append(" ");
+//                }
+//                text.append(System.lineSeparator());
+//            }
+//            outPolynomialB.setText(text.toString());
+//            PolynomialEntity polynomialEntity = PolynomialEntity.parsePolynomialEntity(evt.getItem().toString());
+//
+//            Integer period = (ArithmeticsUtils.pow(2, Integer.parseInt(degreePolynomialA.getSelectedItem().toString()))-1) / ArithmeticsUtils.gcd(ArithmeticsUtils.pow(2, Integer.parseInt(degreePolynomialA.getSelectedItem().toString())-1), Integer.parseInt(polynomialEntity.getJ()));
+//            periodPolynomialB.setText(period.toString());
+//            report.setPeriodB(period);
+//            report.setB(polynomialB);
+//        }
+//    }
 
     private void sequenceNextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sequenceNextMouseClicked
         sequenceForm.setVisible(true);
@@ -308,7 +322,7 @@ public class InitPanel extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JComboBox<String> choosePolynomialA;
-    public javax.swing.JComboBox<String> choosePolynomialB;
+//    public javax.swing.JComboBox<String> choosePolynomialB;
     public javax.swing.JComboBox<String> degreePolynomialA;
     private javax.swing.JButton nextStep;
     private javax.swing.JTextArea outPolynomialA;
@@ -316,7 +330,7 @@ public class InitPanel extends javax.swing.JFrame {
     private javax.swing.JLabel periodPolynomialA;
     private javax.swing.JLabel periodPolynomialALabel;
     private javax.swing.JLabel periodPolynomialB;
-    private javax.swing.JLabel periodPolynomialBLabel;
+//    private javax.swing.JLabel periodPolynomialBLabel;
     private javax.swing.JLabel polynomialALabel;
     private javax.swing.JScrollPane polynomialAScroll;
     private javax.swing.JLabel polynomialBLabel;
