@@ -20,17 +20,17 @@ public class SmithFormsGenerator {
         Integer degree = report.getDegree();
         setBaseSequence(degree);
 
-        for(int i = 0; i < degree; i++) {
+        for (int i = 0; i < degree; i++) {
             List<Integer> temp = new ArrayList<>(baseSequence.get(i));
-            temp.set(i,1);
-            baseSequence.set(i,temp);
-            report.addSequenceSmith(new ArrayList<>(baseSequence), generateSequenceAndCalculateWeightHamming(baseSequence));
+            temp.set(i, 1);
+            baseSequence.set(i, temp);
+            report.addSequenceSmith(new ArrayList<>(baseSequence), MatrixUtils.generateSequenceAndCalculateWeightHamming(baseSequence, report));
         }
     }
 
-    private void setBaseSequence(Integer degree){
+    private void setBaseSequence(Integer degree) {
         baseSequence = new ArrayList<>();
-        for(int i = 0; i < degree; i++) {
+        for (int i = 0; i < degree; i++) {
             List<Integer> internalSequence = new ArrayList<>(degree);
             for (int j = 0; j < degree; j++) {
                 internalSequence.add(0);
@@ -39,19 +39,5 @@ public class SmithFormsGenerator {
         }
     }
 
-    private Integer generateSequenceAndCalculateWeightHamming(List<List<Integer>> baseSequence){
-        Integer weight = 0;
-
-        List<List<Integer>> sequence = new ArrayList<>(baseSequence);
-
-        for(int i = 0; i < report.getPeriodA(); i++) {
-            if(sequence.get(0).get(0).equals(1)) {
-                weight++;
-            }
-            sequence = MatrixUtils.multByModulo(report.getA(),sequence);
-            sequence = MatrixUtils.multByModulo(sequence,report.getB());
-        }
-        return weight;
-    }
 
 }

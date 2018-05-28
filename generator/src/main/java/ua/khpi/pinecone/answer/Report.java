@@ -1,5 +1,7 @@
 package ua.khpi.pinecone.answer;
 
+import ua.khpi.pinecone.polynomial.PolynomialEntity;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +14,8 @@ public class Report {
     private List<List<List<Integer>>> sequences = new ArrayList<>();
     private Map<List<List<Integer>>, Integer> sequencesSmith = new HashMap<>();
     private Map<List<List<Integer>>, Integer> sequencesFrobenius = new HashMap<>();
+
+    private  Map<String, List<PolynomialEntity>> polynomials = new HashMap<>();
 
     private Integer degree;
     private Integer periodA;
@@ -96,7 +100,7 @@ public class Report {
         this.hammingWeight = hammingWeight;
     }
 
-    public void makeStep(){
+    public void makeStep() {
         steps++;
     }
 
@@ -106,5 +110,13 @@ public class Report {
 
     public List<List<List<Integer>>> getSequences() {
         return sequences;
+    }
+
+    public Map<String, List<PolynomialEntity>> getPolynomials() {
+        return polynomials;
+    }
+
+    public void setPolynomials(Map<String, List<PolynomialEntity>> polynomials) {
+        this.polynomials = polynomials;
     }
 }

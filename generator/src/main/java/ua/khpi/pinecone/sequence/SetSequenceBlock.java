@@ -6,6 +6,7 @@
 package ua.khpi.pinecone.sequence;
 
 import ua.khpi.pinecone.answer.Report;
+import ua.khpi.pinecone.sequence.block.FrobeniusFormsGenerator;
 import ua.khpi.pinecone.sequence.block.SmithFormsGenerator;
 
 import java.util.List;
@@ -14,7 +15,6 @@ import java.util.Map;
 import static ua.khpi.pinecone.polynomial.form.InitPanel.setSequenceBlock;
 
 /**
- *
  * @author pinecone
  */
 public class SetSequenceBlock extends javax.swing.JFrame {
@@ -67,37 +67,37 @@ public class SetSequenceBlock extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(scrollPaneSmith, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(scrollPaneFrobenius, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(closeSequenceBlock, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(27, 27, 27)
+                                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(scrollPaneSmith, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(scrollPaneFrobenius, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(closeSequenceBlock, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel2))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(scrollPaneSmith, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
-                    .addComponent(scrollPaneFrobenius)
-                    .addComponent(closeSequenceBlock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(scrollPaneSmith, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                                        .addComponent(scrollPaneFrobenius)
+                                        .addComponent(closeSequenceBlock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         //Listeners
@@ -110,33 +110,47 @@ public class SetSequenceBlock extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void setSmithOut(){
+    //TODO: rename
+    public void setSequencesStatisticOut() {
         SmithFormsGenerator smithFormsGenerator = new SmithFormsGenerator(report);
+        FrobeniusFormsGenerator frobeniusFormsGenerator = new FrobeniusFormsGenerator(report);
         smithOut.setText(generateStringFromReportSmith());
+        frobeniusOut.setText(generateStringFromReportFrobenius());
     }
 
     private void sequenceCloseSequenceBlockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sequenceNextMouseClicked
         setSequenceBlock.setVisible(false);
     }
 
-    private String generateStringFromReportSmith(){
+    private String generateStringFromReportSmith() {
         Map<List<List<Integer>>, Integer> smithForms = report.getSequencesSmith();
 
         StringBuilder sb = new StringBuilder();
         for (Map.Entry<List<List<Integer>>, Integer> listIntegerEntry : smithForms.entrySet()) {
-//            sb.append(listIntegerEntry.getKey().get(0))
-            for(int i = 0; i < listIntegerEntry.getKey().size(); i++) {
+            for (int i = 0; i < listIntegerEntry.getKey().size(); i++) {
                 sb.append(listIntegerEntry.getKey().get(i)).append(System.lineSeparator());
             }
-//            for (List<List<Integer>> lists : smithForms.keySet()) {
-//                sb.append(lists.).append(System.lineSeparator());
-//            }
             sb.append("Wght Hemm = ").append(listIntegerEntry.getValue()).append(System.lineSeparator());
             sb.append("_______________________").append(System.lineSeparator());
         }
         return sb.toString();
     }
 
+    private String generateStringFromReportFrobenius() {
+        StringBuilder sb = new StringBuilder();
+
+        Map<List<List<Integer>>, Integer> frobeniusForms = report.getSequencesFrobenius();
+
+        for (Map.Entry<List<List<Integer>>, Integer> listIntegerEntry : frobeniusForms.entrySet()) {
+            for (int i = 0; i < listIntegerEntry.getKey().size(); i++) {
+                sb.append(listIntegerEntry.getKey().get(i)).append(System.lineSeparator());
+            }
+            sb.append("Wght Hemm = ").append(listIntegerEntry.getValue()).append(System.lineSeparator());
+            sb.append("_______________________").append(System.lineSeparator());
+        }
+
+        return sb.toString();
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -24,7 +24,7 @@ public class PolynomialGenerator {
         LOG.info("Available polynomials read from file");
     }
 
-    public void processFilesFromFolder(File folder) {
+    private void processFilesFromFolder(File folder) {
         File[] folderEntries = folder.listFiles();
         for (File entry : folderEntries) {
             if (entry.isDirectory()) {
@@ -45,7 +45,7 @@ public class PolynomialGenerator {
         }
     }
 
-    public List<List<Integer>> generatePolynomialA(String degree, String octalPolynomial) {
+    public static List<List<Integer>> generatePolynomialA(String degree, String octalPolynomial) {
         List<List<Integer>> polynomial = new ArrayList<>();
         List<Integer> list = new ArrayList<>();
         Integer intDegree = Integer.parseInt(degree);
@@ -66,7 +66,7 @@ public class PolynomialGenerator {
         return polynomial;
     }
 
-    public List<List<Integer>> generatePolynomialB(String degree, String octalPolynomial) {
+    public static List<List<Integer>> generatePolynomialB(String degree, String octalPolynomial) {
         List<List<Integer>> polynomial = new ArrayList<>();
         List<Integer> binaryList = new ArrayList<>();
         Integer intDegree = Integer.parseInt(degree);
@@ -87,7 +87,7 @@ public class PolynomialGenerator {
         return polynomial;
     }
 
-    private void toBinarySequence(String octalPolynomial, List<Integer> list, Integer intDegree) {
+    private static void toBinarySequence(String octalPolynomial, List<Integer> list, Integer intDegree) {
         for (int i = 0; i < octalPolynomial.length(); i++) {
             Character ch = octalPolynomial.charAt(i);
             if (CharUtils.isAsciiNumeric(ch)) {

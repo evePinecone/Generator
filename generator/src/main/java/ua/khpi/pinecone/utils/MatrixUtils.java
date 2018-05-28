@@ -1,5 +1,7 @@
 package ua.khpi.pinecone.utils;
 
+import ua.khpi.pinecone.answer.Report;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -7,7 +9,7 @@ import java.util.List;
 public class MatrixUtils {
 
     public static <T> List<List<T>> transposeListOfLists(List<List<T>> table) {
-        List<List<T>> ret = new ArrayList<List<T>>();
+        List<List<T>> ret = new ArrayList<>();
         final int N = table.get(0).size();
         for (int i = 0; i < N; i++) {
             List<T> col = new ArrayList<T>();
@@ -77,4 +79,19 @@ public class MatrixUtils {
         return text.toString();
     }
 
+
+    public static Integer generateSequenceAndCalculateWeightHamming(List<List<Integer>> baseSequence, Report report){
+        Integer weight = 0;
+
+        List<List<Integer>> sequence = new ArrayList<>(baseSequence);
+
+        for(int i = 0; i < report.getPeriodA(); i++) {
+            if(sequence.get(0).get(0).equals(1)) {
+                weight++;
+            }
+            sequence = MatrixUtils.multByModulo(report.getA(),sequence);
+            sequence = MatrixUtils.multByModulo(sequence,report.getB());
+        }
+        return weight;
+    }
 }

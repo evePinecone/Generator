@@ -64,6 +64,7 @@ public class InitPanel extends javax.swing.JFrame {
         polynomialGenerator = new PolynomialGenerator();
 
         Map<String, List<PolynomialEntity>> polynomials = polynomialGenerator.getPolynomials();
+        report.setPolynomials(polynomials);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -203,11 +204,11 @@ public class InitPanel extends javax.swing.JFrame {
             stringList[counter++] = polynomialEntity.toString();
         }
         choosePolynomialA.setModel(new javax.swing.DefaultComboBoxModel<>(stringList));
-//        choosePolynomialB.setModel(new javax.swing.DefaultComboBoxModel<>(stringList));
         outPolynomialA.setText("");
         outPolynomialB.setText("");
         if(!evt.getItem().equals("")) {
             report.setDegree(Integer.parseInt(evt.getItem().toString()));
+            report.setPolynomials(polynomials);
         }
     }
 
