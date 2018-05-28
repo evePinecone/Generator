@@ -1,4 +1,4 @@
-package ua.khpi.pinecone.answer;
+package ua.khpi.pinecone.report;
 
 import ua.khpi.pinecone.polynomial.PolynomialEntity;
 

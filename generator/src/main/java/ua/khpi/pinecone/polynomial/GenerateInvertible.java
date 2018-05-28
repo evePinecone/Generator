@@ -1,6 +1,6 @@
 package ua.khpi.pinecone.polynomial;
 
-import ua.khpi.pinecone.answer.Report;
+import ua.khpi.pinecone.report.Report;
 import ua.khpi.pinecone.utils.MatrixUtils;
 
 import java.util.List;

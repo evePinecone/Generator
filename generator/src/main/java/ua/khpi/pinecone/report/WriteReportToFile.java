@@ -1,4 +1,4 @@
-package ua.khpi.pinecone.answer;
+package ua.khpi.pinecone.report;
 
 import java.io.BufferedWriter;
 import java.io.File;

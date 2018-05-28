@@ -66,26 +66,26 @@ public class PolynomialGenerator {
         return polynomial;
     }
 
-    public static List<List<Integer>> generatePolynomialB(String degree, String octalPolynomial) {
-        List<List<Integer>> polynomial = new ArrayList<>();
-        List<Integer> binaryList = new ArrayList<>();
-        Integer intDegree = Integer.parseInt(degree);
-
-        toBinarySequence(octalPolynomial, binaryList, intDegree);
-        for (int i = 0; i < intDegree; i++) {
-            List<Integer> tempList = new ArrayList<>();
-            tempList.add(binaryList.get(i));
-            for(int j = 1; j < intDegree; j++) {
-                if(j == i+1) {
-                    tempList.add(1);
-                } else {
-                    tempList.add(0);
-                }
-            }
-            polynomial.add(tempList);
-        }
-        return polynomial;
-    }
+//    public static List<List<Integer>> generatePolynomialB(String degree, String octalPolynomial) {
+//        List<List<Integer>> polynomial = new ArrayList<>();
+//        List<Integer> binaryList = new ArrayList<>();
+//        Integer intDegree = Integer.parseInt(degree);
+//
+//        toBinarySequence(octalPolynomial, binaryList, intDegree);
+//        for (int i = 0; i < intDegree; i++) {
+//            List<Integer> tempList = new ArrayList<>();
+//            tempList.add(binaryList.get(i));
+//            for(int j = 1; j < intDegree; j++) {
+//                if(j == i+1) {
+//                    tempList.add(1);
+//                } else {
+//                    tempList.add(0);
+//                }
+//            }
+//            polynomial.add(tempList);
+//        }
+//        return polynomial;
+//    }
 
     private static void toBinarySequence(String octalPolynomial, List<Integer> list, Integer intDegree) {
         for (int i = 0; i < octalPolynomial.length(); i++) {

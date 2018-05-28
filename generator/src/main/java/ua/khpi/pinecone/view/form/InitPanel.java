@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ua.khpi.pinecone.polynomial.form;
+package ua.khpi.pinecone.view.form;
 
 import org.apache.log4j.Logger;
-import ua.khpi.pinecone.answer.Report;
-import ua.khpi.pinecone.answer.ResultSSequenceForm;
+import ua.khpi.pinecone.report.Report;
+import ua.khpi.pinecone.view.ResultSSequenceForm;
 import ua.khpi.pinecone.polynomial.GenerateInvertible;
 import ua.khpi.pinecone.polynomial.PolynomialEntity;
 import ua.khpi.pinecone.polynomial.PolynomialGenerator;
-import ua.khpi.pinecone.sequence.SequenceForm;
-import ua.khpi.pinecone.sequence.SetSequenceBlock;
+import ua.khpi.pinecone.view.SequenceForm;
+import ua.khpi.pinecone.view.SetSequenceBlock;
 import ua.khpi.pinecone.utils.ArithmeticsUtils;
 import ua.khpi.pinecone.utils.MatrixUtils;
 

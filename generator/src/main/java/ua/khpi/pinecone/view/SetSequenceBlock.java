@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ua.khpi.pinecone.sequence;
+package ua.khpi.pinecone.view;
 
-import ua.khpi.pinecone.answer.Report;
-import ua.khpi.pinecone.sequence.block.FrobeniusFormsGenerator;
-import ua.khpi.pinecone.sequence.block.SmithFormsGenerator;
+import ua.khpi.pinecone.report.Report;
+import ua.khpi.pinecone.polynomial.sequence.FrobeniusFormsGenerator;
+import ua.khpi.pinecone.polynomial.sequence.SmithFormsGenerator;
 
 import java.util.List;
 import java.util.Map;
 
-import static ua.khpi.pinecone.polynomial.form.InitPanel.setSequenceBlock;
+import static ua.khpi.pinecone.view.form.InitPanel.setSequenceBlock;
 
 /**
  * @author pinecone

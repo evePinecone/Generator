@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ua.khpi.pinecone.sequence;
+package ua.khpi.pinecone.view;
 
-import ua.khpi.pinecone.answer.Report;
+import ua.khpi.pinecone.report.Report;
+import ua.khpi.pinecone.polynomial.sequence.SSequence;
 
 import java.util.List;
 
-import static ua.khpi.pinecone.polynomial.form.InitPanel.initPanel;
-import static ua.khpi.pinecone.polynomial.form.InitPanel.resultSSequenceForm;
-import static ua.khpi.pinecone.polynomial.form.InitPanel.sequenceForm;
+import static ua.khpi.pinecone.view.form.InitPanel.initPanel;
+import static ua.khpi.pinecone.view.form.InitPanel.resultSSequenceForm;
+import static ua.khpi.pinecone.view.form.InitPanel.sequenceForm;
 
 /**
  *

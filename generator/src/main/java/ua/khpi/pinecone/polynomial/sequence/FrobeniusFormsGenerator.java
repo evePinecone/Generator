@@ -1,6 +1,6 @@
-package ua.khpi.pinecone.sequence.block;
+package ua.khpi.pinecone.polynomial.sequence;
 
-import ua.khpi.pinecone.answer.Report;
+import ua.khpi.pinecone.report.Report;
 import ua.khpi.pinecone.utils.ArithmeticsUtils;
 import ua.khpi.pinecone.utils.MatrixUtils;
 

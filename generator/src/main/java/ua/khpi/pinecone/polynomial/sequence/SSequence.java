@@ -1,4 +1,4 @@
-package ua.khpi.pinecone.sequence;
+package ua.khpi.pinecone.polynomial.sequence;
 
 import org.apache.log4j.Logger;
 

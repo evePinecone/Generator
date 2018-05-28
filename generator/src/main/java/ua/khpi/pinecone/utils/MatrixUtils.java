@@ -1,6 +1,6 @@
 package ua.khpi.pinecone.utils;
 
-import ua.khpi.pinecone.answer.Report;
+import ua.khpi.pinecone.report.Report;
 
 import java.util.ArrayList;
 import java.util.Arrays;
