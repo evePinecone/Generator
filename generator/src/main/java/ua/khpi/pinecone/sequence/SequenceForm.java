@@ -42,7 +42,6 @@ public class SequenceForm extends javax.swing.JFrame {
         outSequence = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         sequenceLoadFile = new javax.swing.JButton();
-        sequenceBlockForms = new javax.swing.JButton();
         sequenceNext = new javax.swing.JButton();
         sequencePrev = new javax.swing.JButton();
 
@@ -60,13 +59,6 @@ public class SequenceForm extends javax.swing.JFrame {
         sequenceLoadFile.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 sequenceLoadFileMouseClicked(evt);
-            }
-        });
-
-        sequenceBlockForms.setText("<block forms>");
-        sequenceBlockForms.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                sequenceBlockFormsMouseClicked(evt);
             }
         });
 
@@ -94,7 +86,6 @@ public class SequenceForm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(sequenceLoadFile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(sequenceBlockForms, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 6, Short.MAX_VALUE)
@@ -112,8 +103,6 @@ public class SequenceForm extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(sequenceLoadFile, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(sequenceBlockForms, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(sequenceNext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -138,10 +127,6 @@ public class SequenceForm extends javax.swing.JFrame {
         outSequence.setText(stringBuilder.toString());
     }//GEN-LAST:event_sequenceLoadFileMouseClicked
 
-    private void sequenceBlockFormsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sequenceBlockFormsMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_sequenceBlockFormsMouseClicked
-
     private void sequencePrevMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sequencePrevMouseClicked
         initPanel.setVisible(true);
         sequenceForm.setVisible(false);
@@ -155,15 +140,12 @@ public class SequenceForm extends javax.swing.JFrame {
     }//GEN-LAST:event_sequenceNextMouseClicked
 
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea outSequence;
-    private javax.swing.JButton sequenceBlockForms;
     private javax.swing.JButton sequenceLoadFile;
     private javax.swing.JButton sequenceNext;
     private javax.swing.JButton sequencePrev;
-    // End of variables declaration//GEN-END:variables
 
     private SSequence sequence;
 }

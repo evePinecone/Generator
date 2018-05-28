@@ -112,7 +112,6 @@ public class ResultSSequenceForm extends javax.swing.JFrame {
             }
         });
 
-        sequenceGeneratedSuccesfully.setText("Sequence generated!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -236,6 +235,8 @@ public class ResultSSequenceForm extends javax.swing.JFrame {
     }//GEN-LAST:event_generateAllMouseClicked
 
     private void saveResultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveResultMouseClicked
+
+        WriteReportToFile writeReportToFile = new WriteReportToFile(reportEntity);
         // TODO add your handling code here:
     }//GEN-LAST:event_saveResultMouseClicked
 
