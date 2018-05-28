@@ -1,19 +1,48 @@
 package ua.khpi.pinecone.answer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Report {
 
     private List<List<Integer>> a;
     private List<List<Integer>> b;
     private List<List<List<Integer>>> sequences = new ArrayList<>();
+    private Map<List<List<Integer>>, Integer> sequencesSmith = new HashMap<>();
+    private Map<List<List<Integer>>, Integer> sequencesFrobenius = new HashMap<>();
 
+    private Integer degree;
     private Integer periodA;
     private Integer periodB;
     private Integer estimatedPeriod;
     private Integer hammingWeight;
     private Integer steps;
+
+    public void addSequenceSmith(List<List<Integer>> sequenceSmith, Integer hammingWeight) {
+        this.sequencesSmith.put(sequenceSmith, hammingWeight);
+    }
+
+    public void addSequencesFrobenius(List<List<Integer>> sequenceFrobenius, Integer hammingWeight) {
+        this.sequencesFrobenius.put(sequenceFrobenius, hammingWeight);
+    }
+
+    public Map<List<List<Integer>>, Integer> getSequencesSmith() {
+        return sequencesSmith;
+    }
+
+    public Map<List<List<Integer>>, Integer> getSequencesFrobenius() {
+        return sequencesFrobenius;
+    }
+
+    public Integer getDegree() {
+        return degree;
+    }
+
+    public void setDegree(Integer degree) {
+        this.degree = degree;
+    }
 
     public List<List<Integer>> getA() {
         return a;

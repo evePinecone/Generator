@@ -12,14 +12,13 @@ import java.util.List;
 
 import static ua.khpi.pinecone.polynomial.form.InitPanel.resultSSequenceForm;
 import static ua.khpi.pinecone.polynomial.form.InitPanel.sequenceForm;
+import static ua.khpi.pinecone.polynomial.form.InitPanel.setSequenceBlock;
 
 /**
  *
  * @author inc_f
  */
 public class ResultSSequenceForm extends javax.swing.JFrame {
-
-//    private static ReportEntity reportEntity;
 
     /**
      * Creates new form ResultSSequence
@@ -233,7 +232,8 @@ public class ResultSSequenceForm extends javax.swing.JFrame {
     }//GEN-LAST:event_nextStepGenerationMouseClicked
 
     private void generateAllMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generateAllMouseClicked
-        // TODO add your handling code here:
+        setSequenceBlock.setSmithOut();
+        setSequenceBlock.setVisible(true);
     }//GEN-LAST:event_generateAllMouseClicked
 
     private void saveResultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveResultMouseClicked

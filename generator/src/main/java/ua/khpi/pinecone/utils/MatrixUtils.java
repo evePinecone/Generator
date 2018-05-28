@@ -66,5 +66,15 @@ public class MatrixUtils {
         return list;
     }
 
+    public static String listPolynomialToString(List<List<Integer>> polynomial) {
+        StringBuilder text = new StringBuilder();
+        for (List<Integer> list : polynomial) {
+            for (Integer integer : list) {
+                text.append(integer).append(" ");
+            }
+            text.append(System.lineSeparator());
+        }
+        return text.toString();
+    }
 
 }

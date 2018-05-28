@@ -12,7 +12,9 @@ import ua.khpi.pinecone.polynomial.GenerateInvertible;
 import ua.khpi.pinecone.polynomial.PolynomialEntity;
 import ua.khpi.pinecone.polynomial.PolynomialGenerator;
 import ua.khpi.pinecone.sequence.SequenceForm;
+import ua.khpi.pinecone.sequence.SetSequenceBlock;
 import ua.khpi.pinecone.utils.ArithmeticsUtils;
+import ua.khpi.pinecone.utils.MatrixUtils;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -204,6 +206,9 @@ public class InitPanel extends javax.swing.JFrame {
 //        choosePolynomialB.setModel(new javax.swing.DefaultComboBoxModel<>(stringList));
         outPolynomialA.setText("");
         outPolynomialB.setText("");
+        if(!evt.getItem().equals("")) {
+            report.setDegree(Integer.parseInt(evt.getItem().toString()));
+        }
     }
 
     private void choosePolynomialAItemStateChanged(ItemEvent evt) {
@@ -211,7 +216,7 @@ public class InitPanel extends javax.swing.JFrame {
         StringBuilder text = new StringBuilder();
         if (!evt.getItem().equals(" ")) {
 
-            outPolynomialA.setText(listPolynomialToString(polynomialA));
+            outPolynomialA.setText(MatrixUtils.listPolynomialToString(polynomialA));
 
             PolynomialEntity polynomialEntity = PolynomialEntity.parsePolynomialEntity(evt.getItem().toString());
             Integer period = (ArithmeticsUtils.pow(2, Integer.parseInt(degreePolynomialA.getSelectedItem().toString()))-1) / ArithmeticsUtils.gcd(ArithmeticsUtils.pow(2, Integer.parseInt(degreePolynomialA.getSelectedItem().toString())-1), Integer.parseInt(polynomialEntity.getJ()));
@@ -222,22 +227,11 @@ public class InitPanel extends javax.swing.JFrame {
             report.setPeriodB(period);
 
             List<List<Integer>> polynomialB = new GenerateInvertible(report).generateInvertible(polynomialA);
-            outPolynomialB.setText(listPolynomialToString(polynomialB));
+            outPolynomialB.setText(MatrixUtils.listPolynomialToString(polynomialB));
 
             report.setA(polynomialA);
             report.setB(polynomialB);
         }
-    }
-
-    private String listPolynomialToString(List<List<Integer>> polynomialA) {
-        StringBuilder text = new StringBuilder();
-        for (List<Integer> list : polynomialA) {
-            for (Integer integer : list) {
-                text.append(integer).append(" ");
-            }
-            text.append(System.lineSeparator());
-        }
-        return text.toString();
     }
 
 
@@ -318,6 +312,13 @@ public class InitPanel extends javax.swing.JFrame {
                 resultSSequenceForm.setVisible(false);
             }
         });
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                setSequenceBlock = new SetSequenceBlock(report);
+                setSequenceBlock.setVisible(false);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -341,4 +342,5 @@ public class InitPanel extends javax.swing.JFrame {
     public static SequenceForm sequenceForm;
     public static InitPanel initPanel;
     public static ResultSSequenceForm resultSSequenceForm;
+    public static SetSequenceBlock setSequenceBlock;
 }
